@@ -10,6 +10,6 @@ load_dotenv(dotenv_path=env_path)
 client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
 
 # connect the bot to the channel in Slack Channel
-client.chat_postMessage(channel='#cps-847-course', text='Send Message Demo2321')
+client.chat_postMessage(channel='#general', text='Send Message Demo2321')
 
 

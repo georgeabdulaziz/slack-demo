@@ -20,7 +20,7 @@ slack_event_adapter = SlackEventAdapter(os.environ['SIGNING_SECRET'],'/slack/eve
 client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
 
 # connect the bot to the channel in Slack Channel
-client.chat_postMessage(channel='#cps-847-course', text='Send Message Demo')
+client.chat_postMessage(channel='#general', text='Send Message Demo')
 
 # Get Bot ID
 BOT_ID = client.api_call("auth.test")['user_id']
