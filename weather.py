@@ -49,18 +49,6 @@ def hello():
 def message(payload):
     print(payload)
 
-    # for key,value in payload.items():
-    #     if key=='event':
-    #         print(value)
-    #         val = value
-    #         for key1, value1 in val.items():
-    #             if key1=='text':
-    #                 cityName=value1
-    #                 print(cityName)
-    #messageWordList= cityName.split()
-
-
-
 
     event = payload.get('event',{})
     channel_id = event.get('channel')
@@ -75,8 +63,6 @@ def message(payload):
         if ent.label_=="GPE":
             url = f"https://api.openweathermap.org/data/2.5/weather?q={ent.text}&appid={apiKey}"
             response = requests.request("GET", url)
-            # print(response.text)
-            # print(response.json())
             # print(type(response.text))
             # print(type(response.json()))
             tempInKelvin = int(response.json().get('main').get('temp'))
@@ -85,23 +71,6 @@ def message(payload):
             statement = f'The temperature in {ent.text} is {tempInCelsius}'
             if BOT_ID != user_id:
                 client.chat_postMessage(channel=channel_id, text=statement)
-
-    #txt = text2.split()
-
-
-    # print(txt)
-    #
-    # for i in txt:
-    #     url = f"https://api.openweathermap.org/data/2.5/weather?q={i}&appid={apiKey}"
-    #     response = requests.request("GET", url)
-    #     if response.status_code == 200:
-    #         print("********")
-    #         print(response.text)
-    #         if BOT_ID != user_id:
-    #             client.chat_postMessage(channel=channel_id, text=response.text)
-
-
-
 
 # Run the webserver micro-service
 if __name__ == "__main__":
